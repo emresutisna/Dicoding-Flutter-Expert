@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "28.0.0"
+  about:
+    dependency: "direct dev"
+    description:
+      path: about
+      relative: true
+    source: path
+    version: "0.0.1"
   analyzer:
     dependency: transitive
     description:
@@ -93,7 +100,7 @@ packages:
     source: hosted
     version: "8.1.2"
   cached_network_image:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cached_network_image
       url: "https://pub.dartlang.org"
@@ -169,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  core:
+    dependency: "direct dev"
+    description:
+      path: core
+      relative: true
+    source: path
+    version: "0.0.1"
   crypto:
     dependency: transitive
     description:
@@ -177,7 +191,7 @@ packages:
     source: hosted
     version: "3.0.1"
   cupertino_icons:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
@@ -191,14 +205,14 @@ packages:
     source: hosted
     version: "2.2.0"
   dartz:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dartz
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
   equatable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: equatable
       url: "https://pub.dartlang.org"
@@ -252,7 +266,7 @@ packages:
     source: hosted
     version: "3.1.2"
   flutter_rating_bar:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_rating_bar
       url: "https://pub.dartlang.org"
@@ -271,7 +285,7 @@ packages:
     source: hosted
     version: "2.1.2"
   get_it:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get_it
       url: "https://pub.dartlang.org"
@@ -285,7 +299,7 @@ packages:
     source: hosted
     version: "2.0.2"
   google_fonts:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: google_fonts
       url: "https://pub.dartlang.org"
@@ -299,7 +313,7 @@ packages:
     source: hosted
     version: "2.1.0"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -404,7 +418,7 @@ packages:
     source: hosted
     version: "1.8.0"
   path_provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -474,7 +488,7 @@ packages:
     source: hosted
     version: "4.2.3"
   provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: provider
       url: "https://pub.dartlang.org"
@@ -501,6 +515,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.2"
+  search:
+    dependency: "direct dev"
+    description:
+      path: search
+      relative: true
+    source: path
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:
@@ -535,7 +556,7 @@ packages:
     source: hosted
     version: "1.8.1"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       url: "https://pub.dartlang.org"
@@ -661,5 +682,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.15.0-178.0.dev <3.0.0"
   flutter: ">=2.5.0"
