@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   core:
     path: ../core
+  movie:
+    path: ../movie
   dartz: ^0.10.0
 
 dev_dependencies:

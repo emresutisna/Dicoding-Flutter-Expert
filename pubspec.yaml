@@ -41,6 +41,12 @@ dev_dependencies:
     path: about
   core:
     path: core
+  movie:
+    path: movie
+  tv:
+    path: tv
+  watchlist:
+    path: watchlist
   search:
     path: search
 
