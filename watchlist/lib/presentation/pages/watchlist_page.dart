@@ -16,7 +16,7 @@ class _WatchlistPageState extends State<WatchlistPage>
   @override
   void initState() {
     super.initState();
-    controller = new TabController(vsync: this, length: 2);
+    controller = TabController(vsync: this, length: 2);
   }
 
   @override
@@ -29,17 +29,17 @@ class _WatchlistPageState extends State<WatchlistPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watchlist'),
-        bottom: new TabBar(
+        title: const Text('Watchlist'),
+        bottom: TabBar(
           controller: controller,
           //source code lanjutan
-          tabs: <Widget>[
-            new Tab(
-              icon: new Icon(Icons.movie),
+          tabs: const <Widget>[
+            Tab(
+              icon: Icon(Icons.movie),
               text: "Movies",
             ),
-            new Tab(
-              icon: new Icon(Icons.tv),
+            Tab(
+              icon: Icon(Icons.tv),
               text: "TV Series",
             )
           ],
@@ -47,7 +47,7 @@ class _WatchlistPageState extends State<WatchlistPage>
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: kBottomNavigationBarHeight / 2),
-        child: new TabBarView(
+        child: TabBarView(
           controller: controller,
           children: <Widget>[MovieWatchlist(), TvWatchlist()],
         ),

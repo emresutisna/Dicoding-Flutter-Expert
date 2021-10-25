@@ -1,8 +1,7 @@
-import 'package:core/core.dart';
-import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:tv/tv.dart';
 
 class TopRatedTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tv';
@@ -16,8 +15,8 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<TopRatedTvsNotifier>(context, listen: false)
-            .fetchTopRatedTvs());
+        BlocProvider.of<TopRatedTvBloc>(context, listen: false)
+          ..add(FetchTopRatedTvs()));
   }
 
   @override
@@ -28,25 +27,27 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedTvsNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return Center(
+        child: BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+          builder: (context, state) {
+            if (state is TopRatedTvLoading) {
+              return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is TopRatedTvHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tv = data.tvs[index];
+                  final tv = state.result[index];
                   return TvCard(tv);
                 },
-                itemCount: data.tvs.length,
+                itemCount: state.result.length,
+              );
+            } else if (state is TopRatedTvError) {
+              return Center(
+                key: const Key('error_message'),
+                child: Text(state.message),
               );
             } else {
-              return Center(
-                key: Key('error_message'),
-                child: Text(data.message),
-              );
+              return const Text('Failed');
             }
           },
         ),

@@ -1,8 +1,7 @@
-import 'package:core/core.dart';
-import 'package:watchlist/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/presentation/bloc/watchlist_movie_bloc.dart';
 
 class MovieWatchlist extends StatefulWidget {
   @override
@@ -14,23 +13,23 @@ class _MovieWatchlistState extends State<MovieWatchlist> {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
+        BlocProvider.of<WatchlistMovieBloc>(context, listen: false)
+          ..add(FetchWatchlistMovies()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Consumer<WatchlistMovieNotifier>(
-        builder: (context, data, child) {
-          if (data.watchlistState == RequestState.Loading) {
-            return Center(
+      child: BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
+        builder: (context, state) {
+          if (state is WatchlistMovieLoading) {
+            return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (data.watchlistState == RequestState.Loaded) {
-            if (data.watchlistMovies.isEmpty) {
-              return Center(
+          } else if (state is WatchlistMovieHasData) {
+            if (state.result.isEmpty) {
+              return const Center(
                   child: Text(
                 "There's no watchlist yet",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -38,16 +37,20 @@ class _MovieWatchlistState extends State<MovieWatchlist> {
             } else {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.watchlistMovies[index];
+                  final movie = state.result[index];
                   return MovieCard(movie);
                 },
-                itemCount: data.watchlistMovies.length,
+                itemCount: state.result.length,
               );
             }
-          } else {
+          } else if (state is WatchlistMovieError) {
             return Center(
-              key: Key('error_message'),
-              child: Text(data.message),
+              key: const Key('error_message'),
+              child: Text(state.message),
+            );
+          } else {
+            return const Center(
+              child: Text('Unknown'),
             );
           }
         },

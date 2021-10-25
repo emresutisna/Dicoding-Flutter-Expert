@@ -9,5 +9,5 @@ export 'domain/usecases/save_tv_watchlist.dart';
 export 'domain/usecases/remove_watchlist.dart';
 export 'domain/usecases/save_watchlist.dart';
 export 'presentation/pages/watchlist_page.dart';
-export 'presentation/provider/watchlist_movie_notifier.dart';
-export 'presentation/provider/watchlist_tv_notifier.dart';
+export 'presentation/bloc/watchlist_movie_bloc.dart';
+export 'presentation/bloc/watchlist_tv_bloc.dart';
